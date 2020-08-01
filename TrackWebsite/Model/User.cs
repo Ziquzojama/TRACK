@@ -9,6 +9,8 @@ namespace TrackWebsite.Model
     [Table("User")]
     public partial class User
     {
+      
+
         [Key]
         [StringLength(50)]
         public string UserName { get; set; }
@@ -28,7 +30,10 @@ namespace TrackWebsite.Model
         [Column(TypeName = "date")]
         public DateTime? DateOfBirth { get; set; }
 
-        [StringLength(50)]
+        [StringLength(10)]
         public string Gender { get; set; }
+
+        [StringLength(20)]
+        public string EmailID { get; set; }
     }
 }
