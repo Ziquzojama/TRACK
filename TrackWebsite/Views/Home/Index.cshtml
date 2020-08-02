@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Covid-19 Symptoms Tracker</h2>
+<br />
+<iframe height="400" width="700"
+        src="https://www.youtube.com/embed/P1g9nDYlY4I">
+</iframe>
+<br />
+<p>Welcome to the covid-19 symptoms tracker site. Take care of yourself and those around you</p>
+<p>Remember to practice good hygein, wash your hands, sanitise, do not touch your face and do not forget to wear your mask when going out</p>
+
+<br />
+<h4>Stay Home, Stay Safe</h4>
+
+<br />
+<p>Your journey to healty well being start here</p>
+
+<p><input type="checkbox" id="CheckBox1" value="false" /> Accept Term and Conditions</p>
+<input type="button" value="Register" onclick="window.location.href='<%= Url.Action(" actionName", "LoginController" ) %>
+<!--<a href="/Controller/View" class="Button">Register</a>-->
+
+<script type="text/javascript">
+    function ValidateCheckBox(sender, args) {
+        if (document.getElementById("<%=CheckBox1.UserID%>").checked == true) {
+            args.IsValid = true;
+        } else {
+            alert("Please accept the terms and conditions")
+            args.IsValid = false;
+        }
+    }
+</script>

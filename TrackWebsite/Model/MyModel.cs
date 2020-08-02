@@ -12,7 +12,7 @@ namespace TrackWebsite.Model
         {
         }
 
-        public virtual DbSet<Calander> Calanders { get; set; }
+        public virtual DbSet<Calender> Calanders { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
