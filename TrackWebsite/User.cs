@@ -14,6 +14,8 @@ namespace TrackWebsite
     
     public partial class User
     {
+        
+
         public string UserName { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
@@ -21,5 +23,20 @@ namespace TrackWebsite
         public Nullable<int> Age { get; set; }
         public Nullable<System.DateTime> DateOfBirth { get; set; }
         public string Gender { get; set; }
+        public Guid ActivationCode { get; internal set; }
+        public string ConfirmPassword { get; internal set; }
+
+        private string emailID;
+        internal bool IsEmailVerified;
+
+        public string GetEmailID()
+        {
+            return emailID;
+        }
+
+        public void SetEmailID(string value)
+        {
+            emailID = value;
+        }
     }
 }

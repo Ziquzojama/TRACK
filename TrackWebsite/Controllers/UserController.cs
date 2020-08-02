@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using TrackWebsite.Model;
 
 namespace TrackWebsite.Controllers
@@ -20,29 +21,32 @@ namespace TrackWebsite.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Registration([Bind(Exclude = "IsEmailVerified, ActivationCode")] User user)
         {
-            bool Status = false;
-            String message = "";
-
+            //
             //Model validation
             if (ModelState.IsValid) 
             {
-                //Email already exists
+                #region //Email already exists
+                var IsExist = EmailExists(user.GetEmailID());
+                if (IsExist) 
+                {
+                    ModelState.AddModelError("EmailExists", "Email already exists");
+                    return View(user);
+                }
+                #endregion
+                #region Generate activation code
+                user.ActivationCode = Guid.NewGuid();
+                #endregion
+
+                #region Password Hashing 
+                user.Password = Crypto.Hash(user.Password);
+                user.ConfirmPassword = Crypto.Hash(user.ConfirmPassword);
+                user.IsEmailVerified = false;
+                #endregion
 
                
-
-
             }
-            else
-            {
-                message = "Invalid Request";
-            }
-            
+           
 
-            //Generate activation code
-
-            //Password hashing 
-
-            //Save to database 
 
             //Send email to user 
 
@@ -50,10 +54,7 @@ namespace TrackWebsite.Controllers
             return View(user);
         }
 
-        private object EmailExists(object emailID)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         //Verify Email
 
